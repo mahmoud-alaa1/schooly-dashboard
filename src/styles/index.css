@@ -124,3 +124,9 @@ body {
   font-family: "Alexandria";
   background-color: #ECEEF1;
 }
+
+a.active {
+  background-color: #F5F5F5;
+  color: #02C189 !important;
+
+}
