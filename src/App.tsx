@@ -24,6 +24,9 @@ function App() {
           >
             <Route path="/" element={<Navigate to={"/students"} />} />
             <Route path="/students" element={<Students />} />
+            <Route path="/teachers" element={<div>Teachers Page</div>} />
+            <Route path="/classrooms" element={<div>Classrooms Page</div>} />
+            <Route path="*" element={<div>Not Found</div>} />
           </Route>
         </Routes>
       </BrowserRouter>

@@ -1,5 +1,6 @@
 import Header from "../Header";
-import SideNav from "../SideNav";
+import SideNav from "../side-nav/SideNav";
+import AppBreadcrumbs from "../AppBreadcrumbs";
 
 export default function MainLayout({
   children,
@@ -9,9 +10,14 @@ export default function MainLayout({
   return (
     <div className="flex flex-col h-[100dvh] ">
       <Header />
-      <div className="grid grid-cols-[215px_auto] grow">
-        <SideNav />
-        <div>{children}</div>
+      <div className="grid grid-cols-[250px_auto] grow">
+        <div className="lg:block hidden">
+          <SideNav />
+        </div>
+        <div className="overflow-auto p-6 pt-0">
+          <AppBreadcrumbs />
+          {children}
+        </div>
       </div>
     </div>
   );
