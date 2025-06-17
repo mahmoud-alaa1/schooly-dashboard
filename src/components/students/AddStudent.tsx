@@ -3,11 +3,12 @@ import {
   DialogContent,
   DialogDescription,
   DialogHeader,
-  DialogTitle,
+  DialogTitleWithCancel,
   DialogTrigger,
 } from "@/components/ui/dialog";
 import { Plus } from "lucide-react";
 import { Button } from "../ui/button";
+import AddStudentForm from "../forms/AddStudentForm";
 
 export default function AddStudent() {
   return (
@@ -18,19 +19,14 @@ export default function AddStudent() {
           <Plus />
         </Button>
       </DialogTrigger>
-      <DialogContent dir="rtl">
-        <DialogHeader dir="rtl">
-          <DialogTitle>
-            <div dir="rtl" className="p-6">
-              <h3 dir="rtl" className="text-lg font-semibold">
-                إضافة طالب جديد
-              </h3>
-              <p dir="rtl" className="text-sm text-muted-foreground">
-                يمكنك إضافة طالب جديد من خلال النموذج أدناه.
-              </p>
-            </div>
-          </DialogTitle>
+      <DialogContent className="w-[clamp(300px,80vw,1000px)]">
+        <DialogHeader>
+          <DialogTitleWithCancel title="إضافة طالب جديد" icon={<Plus />} />
         </DialogHeader>
+        <div className="p-5 pt-3">
+          <AddStudentForm />
+        </div>
+
         <DialogDescription className="sr-only">
           هذه الحوار مخصص لإضافة طالب جديد إلى النظام. يمكنك ملء النموذج
           بالمعلومات المطلوبة مثل الاسم، البريد الإلكتروني، ورقم الهاتف. بعد

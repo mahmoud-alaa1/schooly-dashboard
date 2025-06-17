@@ -1,4 +1,3 @@
-import React from "react";
 import {
   FormControl,
   FormDescription,
@@ -19,7 +18,7 @@ import {
 } from "@/components/ui/popover";
 import { Button } from "../ui/button";
 import { CalendarIcon } from "lucide-react";
-import Calendar from "@/components/Calendar";
+import { Calendar } from "../ui/calendar";
 
 interface FormDatePickerProps<TFormValues extends FieldValues>
   extends Omit<InputHTMLAttributes<HTMLInputElement>, "name" | "defaultValue"> {
@@ -39,7 +38,6 @@ export default function FormDatePicker<TFormValues extends FieldValues>({
   labelClassName,
   defaultValue,
   placeholder,
-  ...props
 }: FormDatePickerProps<TFormValues>) {
   return (
     <FormField
@@ -61,8 +59,8 @@ export default function FormDatePicker<TFormValues extends FieldValues>({
                 >
                   <span
                     className={cn(
-                      "truncate", 
-                      !field.value && "text-muted-foreground",
+                      "truncate",
+                      !field.value && "text-muted-foreground"
                     )}
                   >
                     {field.value
@@ -78,9 +76,12 @@ export default function FormDatePicker<TFormValues extends FieldValues>({
               </PopoverTrigger>
               <PopoverContent className="w-auto p-2" align="start">
                 <Calendar
+                  mode="single"
                   selected={field.value}
                   onSelect={field.onChange}
+                  className="rounded-lg border"
                   defaultMonth={defaultValue}
+                  captionLayout="dropdown"
                 />
               </PopoverContent>
             </Popover>
