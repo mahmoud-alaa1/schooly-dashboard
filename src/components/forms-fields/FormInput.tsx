@@ -54,7 +54,7 @@ export default function FormInput<TFormValues extends FieldValues>({
                 id={name}
                 {...field}
                 {...inputProps}
-                className={cn(Icon && "pl-8", className)}
+                className={cn("py-3!", Icon && "pl-8", className)}
               />
             </div>
           </FormControl>

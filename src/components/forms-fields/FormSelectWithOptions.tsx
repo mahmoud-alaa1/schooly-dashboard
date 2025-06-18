@@ -1,4 +1,3 @@
-import React from "react";
 import {
   FormControl,
   FormDescription,
@@ -57,14 +56,23 @@ export default function FormSelect<TFormValues extends FieldValues>({
           )}
           <FormControl>
             <Select
-              onValueChange={field.onChange}
+              onValueChange={(val) => {
+                if (val == "") {
+                  console.log("nothing");
+                } else {
+                  field.onChange(parseInt(val, 10));
+                }
+              }}
               defaultValue={field.value?.toString()}
               value={field.value?.toString()}
               disabled={disabled}
               required={required}
               {...props}
             >
-              <SelectTrigger dir="rtl" className={cn("w-full", className)}>
+              <SelectTrigger
+                dir="rtl"
+                className={cn("w-full h-full", className)}
+              >
                 <SelectValue placeholder={placeholder} />
               </SelectTrigger>
               <SelectContent dir="rtl">

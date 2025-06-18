@@ -10,11 +10,11 @@ export default function MainLayout({
   return (
     <div className="flex flex-col h-[100dvh] ">
       <Header />
-      <div className="grid grid-cols-[250px_auto] grow">
+      <div className="grid lg:grid-cols-[250px_auto] grow">
         <div className="lg:block hidden">
           <SideNav />
         </div>
-        <div className="overflow-auto p-6 pt-0">
+        <div className="overflow-auto p-2 md:p-6 pt-0!">
           <AppBreadcrumbs />
           {children}
         </div>
