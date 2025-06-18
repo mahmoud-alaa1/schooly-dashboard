@@ -5,6 +5,7 @@ import PublicRoute from "./components/PublicRoute";
 import ProtectedRoute from "./components/ProtectedRoute";
 import MainLayout from "./components/layouts/MainLayout";
 import { Toaster } from "./components/ui/sonner";
+import Loading from "./components/Loading";
 
 // Lazy-loaded pages
 const LoginPage = lazy(() => import("./pages/LoginPage"));
@@ -19,9 +20,7 @@ function App() {
         <Routes>
           <Route
             element={
-              <Suspense
-                fallback={<div className="p-4 text-center">Loading...</div>}
-              >
+              <Suspense fallback={<Loading />}>
                 <PublicRoute />
               </Suspense>
             }
@@ -40,9 +39,7 @@ function App() {
 
             <Route
               element={
-                <Suspense
-                  fallback={<div className="p-4 text-center">Loading...</div>}
-                >
+                <Suspense fallback={<Loading />}>
                   {/* All protected lazy-loaded pages go here */}
                   <Routes>
                     <Route path="/students" element={<Students />} />
