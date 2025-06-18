@@ -31,24 +31,17 @@ function App() {
           <Route
             element={
               <MainLayout>
-                <ProtectedRoute />
+                <Suspense fallback={<Loading />}>
+                  <ProtectedRoute />
+                </Suspense>
               </MainLayout>
             }
           >
             <Route path="/" element={<Navigate to="/students" />} />
 
-            <Route
-              element={
-                <Suspense fallback={<Loading />}>
-                  {/* All protected lazy-loaded pages go here */}
-                  <Routes>
-                    <Route path="/students" element={<Students />} />
-                    <Route path="/teachers" element={<TeachersPage />} />
-                    <Route path="/classrooms" element={<ClassroomsPage />} />
-                  </Routes>
-                </Suspense>
-              }
-            />
+              <Route path="/students" element={<Students />} />
+              <Route path="/teachers" element={<TeachersPage />} />
+              <Route path="/classrooms" element={<ClassroomsPage />} />
 
             <Route path="*" element={<div>Not Found</div>} />
           </Route>

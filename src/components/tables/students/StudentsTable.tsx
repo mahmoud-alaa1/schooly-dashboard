@@ -30,7 +30,7 @@ export default function StudentsTable() {
 
   return (
     <div className="bg-white rounded-xl border shadow-sm">
-      <div className="p-6 flex items-center border-b-2 mb-2">
+      <div className="p-6 flex items-center border-b-2 mb-2 gap-2">
         <UserRoundPlus />
         <h3>الطلاب</h3>
       </div>
