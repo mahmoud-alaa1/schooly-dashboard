@@ -20,3 +20,13 @@ declare interface IPostStudentResponse {
     test: string;
   };
 }
+
+declare interface IStudent {
+  id: string;
+  studentName: string;
+  department: number;
+  grade: number;
+  parentName: string;
+  parentPhone1: string;
+  dateOfJoining: string;
+}

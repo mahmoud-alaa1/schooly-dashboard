@@ -14,7 +14,7 @@ export default function AddStudent() {
   return (
     <Dialog>
       <DialogTrigger asChild>
-        <Button className="px-5! rounded-xl">
+        <Button className="px-5! rounded-xl ">
           <span>أضف طالب جديد</span>
           <Plus />
         </Button>
