@@ -10,8 +10,8 @@ import Spinner from "../ui/Spinner";
 import FormInput from "../forms-fields/FormInput";
 import { Mail } from "lucide-react";
 const defaultValues: loginSchema = {
-  email: "mahmoud@example.com",
-  password: "mahmoud010",
+  email: "studentmanagementsystem06@gmail.com",
+  password: "admin123",
   rememberMe: true,
 };
 export default function LoginForm() {

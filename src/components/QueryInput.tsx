@@ -28,6 +28,7 @@ export default function QueryInput({
     setSearchParams(searchParams);
   }, [debouncedValue, name]);
 
+
   return (
     <div className="relative h-fit">
       {Icon && (
@@ -44,7 +45,7 @@ export default function QueryInput({
         value={value}
         onChange={(e) => setValue(e.target.value)}
         className={cn(
-          "py-3! min-w-[200px]! text-xs md:text-sm",
+          "py-3! min-w-[300px]! text-xs md:text-sm",
           Icon && "pl-8",
           className
         )}

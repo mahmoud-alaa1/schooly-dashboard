@@ -16,7 +16,7 @@ import {
   SelectValue,
 } from "../ui/select";
 import useInfinite from "@/hooks/useInfinite";
-import Spinner from "../Spinner";
+import Spinner from "@/components/ui/Spinner";
 
 interface FormInfiniteSelectProps<TFormValues extends FieldValues, TData> {
   label?: string;
@@ -37,7 +37,7 @@ interface FormInfiniteSelectProps<TFormValues extends FieldValues, TData> {
 
 export default function FormInfiniteSelect<
   TFormValues extends FieldValues,
-  TData,
+  TData
 >({
   control,
   name,

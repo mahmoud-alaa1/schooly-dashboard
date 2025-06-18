@@ -1,20 +1,19 @@
-import { postStudent } from "@/services/studentsServices";
+import { postTeacher } from "@/services/teachersServices";
 import { useMutation, useQueryClient } from "@tanstack/react-query";
 import { toast } from "sonner";
 import useTableQueries from "../useTableQueries";
 
-export default function usePostStudent() {
-  const result = useTableQueries("students");
-
+export default function usePostTeacher() {
   const queryClient = useQueryClient();
+  const result = useTableQueries("teachers");
 
   return useMutation({
-    mutationFn: postStudent,
+    mutationFn: postTeacher,
     onSuccess: (data) => {
       console.log(data);
-      toast.success("تم تسجيل الطالب بنجاح");
+      toast.success("تم تسجيل المعلم بنجاح");
       queryClient.invalidateQueries({
-        queryKey: ["students", JSON.stringify(result)],
+        queryKey: ["teachers", JSON.stringify(result)],
       });
     },
     onError: (error) => {
