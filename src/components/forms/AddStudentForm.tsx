@@ -51,9 +51,15 @@ export default function AddStudentForm() {
     console.log(values);
     const dateOfBirth = format(values.dateOfBirth, "yyyy-MM-dd");
     const dateOfJoining = format(values.dateOfJoining, "yyyy-MM-dd");
-    mutate({ ...values, dateOfBirth, dateOfJoining });
-    clearFormData();
-    form.reset();
+    mutate(
+      { ...values, dateOfBirth, dateOfJoining },
+      {
+        onSuccess: () => {
+          clearFormData();
+          form.reset();
+        },
+      }
+    );
   }
   return (
     <Form {...form}>
@@ -61,7 +67,10 @@ export default function AddStudentForm() {
         <Button
           type="button"
           variant="destructive"
-          onClick={() => form.reset()}
+          onClick={() => {
+            form.reset();
+            clearFormData();
+          }}
         >
           اعادة تعيين
         </Button>

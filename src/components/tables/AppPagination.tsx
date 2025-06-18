@@ -7,19 +7,18 @@ import { useSearchParams } from "react-router-dom";
 import { Input } from "@/components/ui/input";
 import { Button } from "@/components/ui/button";
 import { ChevronLeft, ChevronRight } from "lucide-react";
+import { PAGE_SIZE } from "@/lib/constants/pagination";
 
 interface AppPaginationProps {
   name: string;
   totalPages: number;
   totalItems: number;
-  itemsPerPage: number;
 }
 
 export default function AppPagination({
   name,
   totalPages,
   totalItems,
-  itemsPerPage,
 }: AppPaginationProps) {
   const [searchParams, setSearchParams] = useSearchParams();
   const currentPage = Number(searchParams.get(`Page-${name}`)) || 1;
@@ -44,9 +43,8 @@ export default function AppPagination({
     }
   };
 
-  // Calculate the range of items being shown
-  const startItem = (currentPage - 1) * itemsPerPage + 1;
-  const endItem = Math.min(currentPage * itemsPerPage, totalItems);
+  const startItem = (currentPage - 1) * PAGE_SIZE + 1;
+  const endItem = Math.min(currentPage * PAGE_SIZE, totalItems);
 
   return (
     <div className="flex  gap-3 items-center justify-between">
@@ -66,6 +64,9 @@ export default function AppPagination({
             </PaginationItem>
 
             <PaginationItem>
+              <label htmlFor={`page-input-${name}`} className="sr-only">
+                Page {name}
+              </label>
               <Input
                 type="number"
                 min={1}
@@ -73,6 +74,7 @@ export default function AppPagination({
                 value={currentPage}
                 onChange={handlePageInput}
                 className="w-16 h-8 text-center"
+                id={`page-input-${name}`}
               />
             </PaginationItem>
 

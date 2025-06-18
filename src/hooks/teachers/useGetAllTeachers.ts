@@ -1,43 +1,43 @@
-import { getAllStudents } from "@/services/studentsServices";
 import useInfinite from "../useInfinite";
 import useTableQueries from "../useTableQueries";
+import { getAllTeachers } from "@/services/teachersServices";
 
-export default function useGetAllStudents() {
-  const result = useTableQueries("students");
+export default function useGetAllTeachers() {
+  const result = useTableQueries("teachers");
   const currentPage = parseInt(result.Page || "1");
   const nextPage = currentPage + 1;
   const prevPage = currentPage - 1;
 
-  const res = useInfinite<IStudent>({
-    queryKey: ["students", JSON.stringify(result)],
+  const res = useInfinite<ITeacher>({
+    queryKey: ["teachers", JSON.stringify(result)],
 
     fetchFn: async () => {
-      return await getAllStudents({
+      return await getAllTeachers({
         ...result,
       });
     },
   });
 
-  useInfinite<IStudent>({
+  useInfinite<ITeacher>({
     queryKey: [
-      "students",
+      "teachers",
       JSON.stringify({ ...result, Page: nextPage.toString() }),
     ],
     fetchFn: async () => {
-      return await getAllStudents({
+      return await getAllTeachers({
         ...result,
         Page: nextPage.toString(),
       });
     },
   });
 
-  useInfinite<IStudent>({
+  useInfinite<ITeacher>({
     queryKey: [
-      "students",
+      "teachers",
       JSON.stringify({ ...result, Page: prevPage.toString() }),
     ],
     fetchFn: async () => {
-      return await getAllStudents({
+      return await getAllTeachers({
         ...result,
         Page: prevPage.toString(),
       });

@@ -1,4 +1,3 @@
-import React from "react";
 import {
   FormControl,
   FormDescription,
@@ -10,7 +9,6 @@ import {
 import {
   InputOTP,
   InputOTPGroup,
-  InputOTPSeparator,
   InputOTPSlot,
 } from "../ui/input-otp";
 
