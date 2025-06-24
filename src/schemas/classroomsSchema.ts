@@ -6,7 +6,7 @@ export const createClassroomSchema = z.object({
   }),
   subject: z.string({
     required_error: "المادة الدراسية مطلوبة",
-  }),
+  }).trim(),
 });
 
 export type createClassroomSchema = z.infer<typeof createClassroomSchema>;

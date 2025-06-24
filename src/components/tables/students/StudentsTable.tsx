@@ -15,6 +15,7 @@ const headers: string[] = [
 
 export default function StudentsTable() {
   const { data, isPending, error } = useGetAllStudents();
+  console.log("StudentsTable data:", data);
   const students = data?.pages.flatMap((page) => page.data) ?? [];
   const totalPages = data?.pages[0]?.meta?.totalPages ?? 1;
   const totalItems = data?.pages[0]?.meta?.totalItems ?? 1;
@@ -39,13 +40,7 @@ export default function StudentsTable() {
           <div className="items-center flex gap-2">
             <AddStudent />
           </div>
-          <div>
-            <QueryInput
-              placeholder="ابحث عن طالب ..."
-              Icon={<Search size={16} />}
-              name="students"
-            />
-          </div>
+
         </div>
         <ReusableTable<IStudent>
           headers={headers}

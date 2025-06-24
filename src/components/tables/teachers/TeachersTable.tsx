@@ -1,6 +1,5 @@
 import ReusableTable from "@/components/tables/ReusableTable";
-import { Search, UserRoundPlus } from "lucide-react";
-import QueryInput from "../../QueryInput";
+import { UserRoundPlus } from "lucide-react";
 import { PAGE_SIZE } from "@/lib/constants/pagination";
 import useGetAllTeachers from "@/hooks/teachers/useGetAllTeachers";
 import TeacherTableRow from "./TeacherTableRow";
@@ -10,10 +9,11 @@ const headers: string[] = ["اسم المعلم", "الايميل", "رقم ال
 
 export default function TeachersTable() {
   const { data, isPending, error } = useGetAllTeachers();
-  const students = data?.pages.flatMap((page) => page.data) ?? [];
+  console.log("TeachersTable data:", data);
+  const teachers = data?.pages.flatMap((page) => page.data) ?? [];
   const totalPages = data?.pages[0]?.meta?.totalPages ?? 1;
   const totalItems = data?.pages[0]?.meta?.totalItems ?? 1;
-  const emptyRows = Math.max(0, PAGE_SIZE - students.length);
+  const emptyRows = Math.max(0, PAGE_SIZE - teachers.length);
 
   if (error) {
     return (
@@ -34,17 +34,11 @@ export default function TeachersTable() {
           <div className="items-center flex gap-2">
             <AddTeacher />
           </div>
-          <div>
-            <QueryInput
-              placeholder="ابحث عن معلم ..."
-              Icon={<Search size={16} />}
-              name="teachers"
-            />
-          </div>
+
         </div>
         <ReusableTable<ITeacher>
           headers={headers}
-          data={students}
+          data={teachers}
           isPending={isPending}
           emptyRows={emptyRows}
           caption="قائمة الطلاب المسجلين في النظام. يمكنك البحث عن الطلاب باستخدام"
