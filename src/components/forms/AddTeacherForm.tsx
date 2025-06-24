@@ -20,6 +20,7 @@ const defaultValues: registerTeacherSchema = {
   password: "",
   email: "",
   name: "",
+  phoneNumber: "",
 };
 
 export default function AddTeacherForm() {
@@ -69,19 +70,28 @@ export default function AddTeacherForm() {
           </p>
           <div className="h-px bg-border flex-1" />
         </div>
-        <FormInput<registerTeacherSchema>
-          control={form.control}
-          name="name"
-          label="اسم المعلم "
-          placeholder="اسم المعلم رباعي"
-        />
         <div className="sm:grid-cols-2 grid gap-3 ">
+
+          <FormInput<registerTeacherSchema>
+            control={form.control}
+            name="name"
+            label="اسم المعلم"
+            placeholder="اسم المعلم رباعي"
+          />
           <FormInput<registerTeacherSchema>
             control={form.control}
             name="email"
             label="بريد المعلم الإلكتروني"
             type="email"
             placeholder="example@example.com"
+          />
+        </div>
+        <div className="sm:grid-cols-2 grid gap-3 ">
+          <FormInput<registerTeacherSchema>
+            control={form.control}
+            name="phoneNumber"
+            label="رقم الهاتف"
+            placeholder="01234567890"
           />
           <FormPassword<registerTeacherSchema>
             control={form.control}

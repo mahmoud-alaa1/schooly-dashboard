@@ -2,9 +2,20 @@ import api from "@/lib/axios";
 import { createClassroomSchema } from "@/schemas/classroomsSchema";
 import { isAxiosError } from "axios";
 
-export async function getAllClassrooms() {
+export async function getAllClassrooms({
+  page = 1,
+  pageSize = 10,
+}: {
+  page?: number | string;
+  pageSize?: number | string;
+}) {
   try {
-    const response = await api.get<IGetAllClassroomsResponse>(`/classroom/all`);
+    const response = await api.get<IPaginatedResponse<IClassroom>>(`/classroom/all`, {
+      params: {
+        page,
+        pageSize,
+      },
+    });
     return response.data;
   } catch (error) {
     if (isAxiosError(error)) {

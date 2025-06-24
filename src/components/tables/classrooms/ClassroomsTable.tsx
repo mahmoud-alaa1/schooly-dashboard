@@ -10,8 +10,11 @@ const headers: string[] = ["المعلم", "المادة", "الصف"];
 
 export default function ClassroomsTable() {
   const { data, isPending, error } = useGetAllClassrooms();
-  const emptyRows = Math.max(0, PAGE_SIZE - (data?.data?.length ?? 0));
-
+  const totalPages = data?.pages[0]?.meta?.totalPages ?? 1;
+  const totalItems = data?.pages[0]?.meta?.totalItems ?? 1;
+  const classrooms = data?.pages.flatMap((page) => page.data) ?? [];
+  const emptyRows = Math.max(0, PAGE_SIZE - classrooms.length);
+  console.log("ClassroomsTable data:", data);
   if (error) {
     return (
       <div className="bg-white rounded-xl border shadow-sm p-6 text-red-500">
@@ -31,17 +34,11 @@ export default function ClassroomsTable() {
           <div className="items-center flex gap-2">
             <AddClassroom />
           </div>
-          <div>
-            <QueryInput
-              placeholder="ابحث عن فصل ..."
-              Icon={<Search size={16} />}
-              name="classrooms"
-            />
-          </div>
+
         </div>
         <ReusableTable<IClassroom>
           headers={headers}
-          data={data?.data ?? []}
+          data={classrooms ?? []}
           isPending={isPending}
           emptyRows={emptyRows}
           caption="قائمة الفصول الدراسية. يمكنك البحث عن الفصول باستخدام"
@@ -50,9 +47,9 @@ export default function ClassroomsTable() {
           )}
           height={36.9}
           paginationProps={{
-            totalItems: data?.data?.length ?? 0,
+            totalItems,
             name: "classrooms",
-            totalPages: 1,
+            totalPages,
           }}
         />
       </div>

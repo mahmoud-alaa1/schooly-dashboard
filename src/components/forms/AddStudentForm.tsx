@@ -25,6 +25,7 @@ const defaultValues: registerStudentSchema = {
   grade: 0,
   parentPhone1: "01000000000",
   parentPhone2: "01000000001",
+  phoneNumber: "01000000000",
   parentRelation: 0,
   password: "",
   studentEmail: "",
@@ -179,6 +180,12 @@ export default function AddStudentForm() {
             name="parentPhone2"
             label="رقم ولى الأمر الثاني"
             placeholder="رقم الموبايل الثانوي"
+          />
+          <FormInput<registerStudentSchema>
+            control={form.control}
+            name="phoneNumber"
+            label="رقم الهاتف"
+            placeholder="رقم الهاتف"
           />
         </div>
 

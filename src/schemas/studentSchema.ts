@@ -4,7 +4,7 @@ export const registerStudentSchema = z.object({
   studentName: z
     .string({
       required_error: "الاسم مطلوب",
-    })
+    }).trim()
     .min(1, "الاسم مطلوب"),
 
   studentEmail: z
@@ -75,6 +75,13 @@ export const registerStudentSchema = z.object({
     .max(11, "رقم الهاتف غير صالح"),
 
   parentPhone2: z.string().optional(),
+  phoneNumber: z
+    .string({
+      required_error: "رقم الهاتف مطلوب",
+    })
+    .min(11, "رقم الهاتف غير صالح")
+    .max(11, "رقم الهاتف غير صالح")
+
 });
 
 export type registerStudentSchema = z.infer<typeof registerStudentSchema>;
