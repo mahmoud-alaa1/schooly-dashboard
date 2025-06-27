@@ -4,17 +4,17 @@ import { Form } from "../ui/form";
 
 import { Button } from "../ui/button";
 import Spinner from "../ui/Spinner";
-import useAssginClassroomStudent from "@/hooks/classrooms/useAssginClassroomStudent";
 import FormInfiniteSelect from "../forms-fields/FormInfiniteSelect";
 import { getAllClassrooms } from "@/services/classroomsServices";
 import { AssignStudentClassroomSchema } from "@/schemas/classroomsSchema";
+import useUnAssginClassroomStudent from "@/hooks/classrooms/useUnAssginClassroomStudent";
 
 interface AssignFormProps {
   id: string;
 }
 
-export default function AssignStudentForm({ id }: AssignFormProps) {
-  const { isPending, mutate } = useAssginClassroomStudent();
+export default function UnAssignStudentForm({ id }: AssignFormProps) {
+  const { isPending, mutate } = useUnAssginClassroomStudent();
 
   const form = useForm<AssignStudentClassroomSchema>({
     resolver: zodResolver(AssignStudentClassroomSchema),

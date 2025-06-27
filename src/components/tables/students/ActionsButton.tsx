@@ -8,6 +8,7 @@ import {
 } from "../../ui/dropdown-menu";
 import RegisterFace from "@/components/students/RegisterFace";
 import AssignStudent from "@/components/students/AssignStudent";
+import UnAssignStudent from "@/components/students/UnAssignStudent";
 
 interface DropdownMenuItemProps {
   student: IStudent;
@@ -57,9 +58,16 @@ function ActionsButton({
           <AssignStudent id={student.id} />
         </DropdownMenuItem>
 
+        <DropdownMenuItem
+          className="text-red-600"
+          onSelect={(e) => e.preventDefault()}
+          dir="rtl"
+        >
+          <UnAssignStudent id={student.id} />
+        </DropdownMenuItem>
         <DropdownMenuItem className="text-red-600" dir="rtl">
           <Trash2 className="mr-2 h-4 w-4" />
-          حذف
+          حذف الطالب
         </DropdownMenuItem>
       </DropdownMenuContent>
     </DropdownMenu>

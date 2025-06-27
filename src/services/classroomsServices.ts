@@ -96,6 +96,29 @@ export async function assginClassroomStudent(data: {
     throw error;
   }
 }
+
+export async function unAssginClassroomStudent(data: {
+  StudentId: string;
+  ClassRoomId: string;
+}) {
+  console.log("Unassigning student from classroom", data);
+  try {
+    const response = await api.delete<{ message: string }>(
+      `/classroom/unassign-student?StudentId=${data.StudentId}&ClassRoomId=${data.ClassRoomId}`
+    );
+    return response.data;
+  } catch (error) {
+    if (isAxiosError(error)) {
+      console.error(error);
+      throw new Error(
+        error.response?.data?.message ||
+          "حدث خطأ ما في حذف الطالب من الفصل الدراسي"
+      );
+    }
+    throw error;
+  }
+}
+
 export async function assginClassroomTeacher(data: {
   TeacherId: string;
   ClassRoomId: string;
