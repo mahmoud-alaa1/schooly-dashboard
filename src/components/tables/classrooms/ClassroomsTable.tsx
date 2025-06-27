@@ -1,12 +1,11 @@
 import ReusableTable from "@/components/tables/ReusableTable";
-import { School, Search } from "lucide-react";
-import QueryInput from "../../QueryInput";
+import { School } from "lucide-react";
 import { PAGE_SIZE } from "@/lib/constants/pagination";
 import useGetAllClassrooms from "@/hooks/classrooms/useGetAllClassrooms";
 import ClassroomsTableRow from "./ClassroomsTableRow";
 import AddClassroom from "@/components/classrooms/AddClassroom";
 
-const headers: string[] = ["المعلم", "المادة", "الصف"];
+const headers: string[] = ["المعلم", "المادة", "الصف", "عدد الطلاب"];
 
 export default function ClassroomsTable() {
   const { data, isPending, error } = useGetAllClassrooms();
@@ -14,7 +13,6 @@ export default function ClassroomsTable() {
   const totalItems = data?.pages[0]?.meta?.totalItems ?? 1;
   const classrooms = data?.pages.flatMap((page) => page.data) ?? [];
   const emptyRows = Math.max(0, PAGE_SIZE - classrooms.length);
-  console.log("ClassroomsTable data:", data);
   if (error) {
     return (
       <div className="bg-white rounded-xl border shadow-sm p-6 text-red-500">
@@ -34,7 +32,6 @@ export default function ClassroomsTable() {
           <div className="items-center flex gap-2">
             <AddClassroom />
           </div>
-
         </div>
         <ReusableTable<IClassroom>
           headers={headers}

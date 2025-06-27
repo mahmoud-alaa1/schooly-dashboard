@@ -10,12 +10,15 @@ export async function getAllClassrooms({
   pageSize?: number | string;
 }) {
   try {
-    const response = await api.get<IPaginatedResponse<IClassroom>>(`/classroom/all`, {
-      params: {
-        page,
-        pageSize,
-      },
-    });
+    const response = await api.get<IPaginatedResponse<IClassroom>>(
+      `/classroom/all`,
+      {
+        params: {
+          page,
+          pageSize,
+        },
+      }
+    );
     return response.data;
   } catch (error) {
     if (isAxiosError(error)) {
@@ -67,6 +70,50 @@ export async function postClassroom(data: createClassroomSchema) {
     if (isAxiosError(error)) {
       console.error(error);
       throw new Error(error.response?.data || "حدث خطأ ما انشاء الفصل الدراسي");
+    }
+    throw error;
+  }
+}
+
+export async function assginClassroomStudent(data: {
+  StudentId: string;
+  ClassRoomId: string;
+}) {
+  console.log("Assigning student to classroom", data);
+  try {
+    const response = await api.post<{ message: string }>(
+      `/classroom/assign-studnet?StudentId=${data.StudentId}&ClassRoomId=${data.ClassRoomId}`
+    );
+    return response.data;
+  } catch (error) {
+    if (isAxiosError(error)) {
+      console.error(error);
+      throw new Error(
+        error.response?.data?.message ||
+          "حدث خطأ ما في تعيين الطالب للفصل الدراسي"
+      );
+    }
+    throw error;
+  }
+}
+export async function assginClassroomTeacher(data: {
+  TeacherId: string;
+  ClassRoomId: string;
+}) {
+  console.log("Assigning student to classroom", data);
+  try {
+    const response = await api.put<{ message: string }>(
+      `/classroom/assign-teacher?TeacherId=${data.TeacherId}&ClassRoomId=${data.ClassRoomId}`,
+      {}
+    );
+    return response.data;
+  } catch (error) {
+    if (isAxiosError(error)) {
+      console.error(error);
+      throw new Error(
+        error.response?.data?.message ||
+          "حدث خطأ ما في تعيين الطالب للفصل الدراسي"
+      );
     }
     throw error;
   }

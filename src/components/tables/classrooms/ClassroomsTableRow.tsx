@@ -9,6 +9,9 @@ export default function ClassroomsTableRow({
     <TableRow>
       <TableCell>
         <div className="flex flex-col gap-1">
+          {classroom.teacherName === "Unknown"
+            ? "لا يوجد معلم"
+            : classroom.teacherName}
           <span className="text-[10px] text-muted-foreground">
             {classroom.teacherId}
           </span>
@@ -18,6 +21,7 @@ export default function ClassroomsTableRow({
       <TableCell>
         <span>{classroom.subject}</span>
       </TableCell>
+      <TableCell>{classroom.numberOfStudents} طلاب</TableCell>
     </TableRow>
   );
 }
