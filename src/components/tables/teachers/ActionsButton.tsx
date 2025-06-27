@@ -7,6 +7,7 @@ import {
   DropdownMenuTrigger,
 } from "../../ui/dropdown-menu";
 import AssignTeacher from "@/components/teachers/AssignTeacher";
+import RegisterFace from "@/components/students/RegisterFace";
 
 interface DropdownMenuItemProps {
   teacher: ITeacher;
@@ -39,6 +40,13 @@ function ActionsButton({
         <DropdownMenuItem dir="rtl">
           <Edit className="mr-2 h-4 w-4" />
           تعديل
+        </DropdownMenuItem>
+        <DropdownMenuItem
+          className="text-blue-600"
+          onSelect={(e) => e.preventDefault()}
+          dir="rtl"
+        >
+          <RegisterFace id={teacher.id} />
         </DropdownMenuItem>
 
         <DropdownMenuItem

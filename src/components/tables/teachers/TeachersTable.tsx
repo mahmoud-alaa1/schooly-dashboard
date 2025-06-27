@@ -5,11 +5,10 @@ import useGetAllTeachers from "@/hooks/teachers/useGetAllTeachers";
 import TeacherTableRow from "./TeacherTableRow";
 import AddTeacher from "@/components/teachers/AddTeacher";
 
-const headers: string[] = ["اسم المعلم", "الايميل", "رقم الهاتف"];
+const headers: string[] = ["اسم المعلم", "الايميل", "رقم الهاتف", ""];
 
 export default function TeachersTable() {
   const { data, isPending, error } = useGetAllTeachers();
-  console.log("TeachersTable data:", data);
   const teachers = data?.pages.flatMap((page) => page.data) ?? [];
   const totalPages = data?.pages[0]?.meta?.totalPages ?? 1;
   const totalItems = data?.pages[0]?.meta?.totalItems ?? 1;
@@ -34,7 +33,6 @@ export default function TeachersTable() {
           <div className="items-center flex gap-2">
             <AddTeacher />
           </div>
-
         </div>
         <ReusableTable<ITeacher>
           headers={headers}
