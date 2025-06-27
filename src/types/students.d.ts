@@ -2,6 +2,7 @@ declare interface IStudentPostData {
   studentName: string;
   studentEmail: string;
   password: string;
+  phoneNumber: string;
   dateOfBirth: string;
   gender: number;
   address: string;

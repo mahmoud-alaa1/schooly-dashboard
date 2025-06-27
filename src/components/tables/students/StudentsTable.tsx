@@ -1,9 +1,8 @@
 import ReusableTable from "@/components/tables/ReusableTable";
 import useGetAllStudents from "@/hooks/students/useGetAllStudents";
 import StudentsTableRow from "./StudentsTableRow";
-import { Search, UserRoundPlus } from "lucide-react";
+import { UserRoundPlus } from "lucide-react";
 import AddStudent from "../../students/AddStudent";
-import QueryInput from "../../QueryInput";
 import { PAGE_SIZE } from "@/lib/constants/pagination";
 
 const headers: string[] = [
@@ -11,11 +10,11 @@ const headers: string[] = [
   "القسم",
   "ولى الامر",
   "تاريخ الالتحاق",
+  "",
 ];
 
 export default function StudentsTable() {
   const { data, isPending, error } = useGetAllStudents();
-  console.log("StudentsTable data:", data);
   const students = data?.pages.flatMap((page) => page.data) ?? [];
   const totalPages = data?.pages[0]?.meta?.totalPages ?? 1;
   const totalItems = data?.pages[0]?.meta?.totalItems ?? 1;
@@ -40,7 +39,6 @@ export default function StudentsTable() {
           <div className="items-center flex gap-2">
             <AddStudent />
           </div>
-
         </div>
         <ReusableTable<IStudent>
           headers={headers}

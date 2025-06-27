@@ -1,4 +1,5 @@
 import { TableCell, TableRow } from "@/components/ui/table";
+import ActionsButton from "./ActionsButton";
 
 export default function TeacherTableRow({ teacher }: { teacher: ITeacher }) {
   return (
@@ -14,6 +15,9 @@ export default function TeacherTableRow({ teacher }: { teacher: ITeacher }) {
       <TableCell>{teacher.email}</TableCell>
       <TableCell>
         <span>{teacher.phoneNumber || "غير متوفر الرقم"}</span>
+      </TableCell>
+      <TableCell>
+        <ActionsButton teacher={teacher} />
       </TableCell>
     </TableRow>
   );

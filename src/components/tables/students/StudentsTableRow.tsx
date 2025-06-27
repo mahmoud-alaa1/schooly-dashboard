@@ -1,3 +1,4 @@
+import ActionsButton from "@/components/tables/students/ActionsButton";
 import { TableCell, TableRow } from "@/components/ui/table";
 import { EDepartment } from "@/types/enums";
 import { format, parseISO } from "date-fns";
@@ -9,7 +10,9 @@ export default function StudentsTableRow({ student }: { student: IStudent }) {
       <TableCell>
         <div className="flex flex-col gap-1">
           <span> {student.studentName}</span>
-          <span className="text-[10px] text-muted-foreground">{student.id}</span>
+          <span className="text-[10px] text-muted-foreground">
+            {student.id}
+          </span>
         </div>
       </TableCell>
       <TableCell>{EDepartment[student.department]}</TableCell>
@@ -23,6 +26,9 @@ export default function StudentsTableRow({ student }: { student: IStudent }) {
       </TableCell>
       <TableCell>
         {format(parseISO(student.dateOfJoining), "d MMMM yyyy", { locale: ar })}
+      </TableCell>
+      <TableCell>
+        <ActionsButton student={student} />
       </TableCell>
     </TableRow>
   );
