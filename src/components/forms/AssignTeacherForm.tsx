@@ -71,7 +71,7 @@ export default function AssignTeacherForm({ id }: AssignFormProps) {
             type="submit"
             className="w-full  text-white py-3 rounded-md  "
           >
-            {isPending ? <Spinner /> : "إضافة طالب جديد"}
+            {isPending ? <Spinner /> : "تسجيل المعلم للفصل"}
           </Button>
         </div>
       </form>

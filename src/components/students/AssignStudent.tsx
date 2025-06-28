@@ -19,19 +19,19 @@ export default function AssignStudent({ id }: IAssignProps) {
       <DialogTrigger asChild>
         <div className="flex items-center w-full cursor-pointer gap-2">
           <School className="mr-2 h-4 w-4" />
-          <span>تعيين فصل دراسي</span>
+          <span>تسجيل فصل دراسي</span>
         </div>
       </DialogTrigger>
       <DialogContent className="w-[clamp(300px,80vw,1000px)]">
         <DialogHeader>
-          <DialogTitleWithCancel title="تعيين فصل دراسي" icon={<Plus />} />
+          <DialogTitleWithCancel title="تسجيل فصل دراسي" icon={<Plus />} />
         </DialogHeader>
         <div className="p-5 pt-3">
           <AssignStudentForm id={id} />
         </div>
 
         <DialogDescription className="sr-only">
-          تعيين فصل دراسي للطالب لتمكينه من الوصول إلى المحتوى التعليمي.
+          تسجيل فصل دراسي للطالب لتمكينه من الوصول إلى المحتوى التعليمي.
           <span className="sr-only">تعيين فصل دراسي للطالب</span>
         </DialogDescription>
       </DialogContent>

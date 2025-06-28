@@ -71,7 +71,7 @@ export default function UnAssignStudentForm({ id }: AssignFormProps) {
             type="submit"
             className="w-full  text-white py-3 rounded-md  "
           >
-            {isPending ? <Spinner /> : "تأكيد حذف الطالب"}
+            {isPending ? <Spinner /> : " تأكيد حذف الطالب من الفصل"}
           </Button>
         </div>
       </form>
