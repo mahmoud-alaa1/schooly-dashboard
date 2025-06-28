@@ -17,9 +17,9 @@ export default function ClassroomsTableRow({
           </span>
         </div>
       </TableCell>
-      <TableCell>{classroom.grade}</TableCell>
+      <TableCell>{classroom.subject}</TableCell>
       <TableCell>
-        <span>{classroom.subject}</span>
+        <span>{classroom.grade}</span>
       </TableCell>
       <TableCell>{classroom.numberOfStudents} طلاب</TableCell>
     </TableRow>

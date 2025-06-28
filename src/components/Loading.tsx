@@ -6,7 +6,7 @@ export default function Loading() {
       <div className="relative">
         <span className="border-primary absolute inset-0 animate-ping rounded-full border duration-1000" />
 
-        <div className="rounded-full bg-[#02D496] p-6">
+        <div className="rounded-full bg-primary p-6">
           <GraduationCap className="bg-primary size-11 text-white" />
         </div>
       </div>
