@@ -24,7 +24,7 @@ export default function UnAssignStudent({ id }: IAssignProps) {
       </DialogTrigger>
       <DialogContent className="w-[clamp(300px,80vw,1000px)]">
         <DialogHeader>
-          <DialogTitleWithCancel title="تعيين فصل دراسي" icon={<Plus />} />
+          <DialogTitleWithCancel title="حذف فصل دراسي" icon={<Plus />} />
         </DialogHeader>
         <div className="p-5 pt-3">
           <UnAssignStudentForm id={id} />
