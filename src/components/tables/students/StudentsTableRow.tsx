@@ -3,8 +3,13 @@ import { TableCell, TableRow } from "@/components/ui/table";
 import { EDepartment } from "@/types/enums";
 import { format, parseISO } from "date-fns";
 import { ar } from "date-fns/locale";
+import { memo } from "react";
 
-export default function StudentsTableRow({ student }: { student: IStudent }) {
+export default memo(function StudentsTableRow({
+  student,
+}: {
+  student: IStudent;
+}) {
   return (
     <TableRow>
       <TableCell>
@@ -32,4 +37,4 @@ export default function StudentsTableRow({ student }: { student: IStudent }) {
       </TableCell>
     </TableRow>
   );
-}
+});

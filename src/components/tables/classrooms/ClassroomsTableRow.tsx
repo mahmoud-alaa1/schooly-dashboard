@@ -1,6 +1,7 @@
 import { TableCell, TableRow } from "@/components/ui/table";
+import { memo } from "react";
 
-export default function ClassroomsTableRow({
+export default memo(function ClassroomsTableRow({
   classroom,
 }: {
   classroom: IClassroom;
@@ -24,4 +25,4 @@ export default function ClassroomsTableRow({
       <TableCell>{classroom.numberOfStudents} طلاب</TableCell>
     </TableRow>
   );
-}
+});

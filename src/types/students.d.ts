@@ -30,4 +30,11 @@ declare interface IStudent {
   parentName: string;
   parentPhone1: string;
   dateOfJoining: string;
+  email: string;
+  phoneNumber: string;
+  dateOfBirth: string;
+  profilePictureUrl: null;
+  role: number;
+  department: number;
+  gender: number;
 }

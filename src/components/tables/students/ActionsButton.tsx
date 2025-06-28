@@ -1,4 +1,4 @@
-import { Edit, Ellipsis, Eye, Trash2 } from "lucide-react";
+import { Edit, Ellipsis, Eye, Trash2, View } from "lucide-react";
 import { Button } from "../../ui/button";
 import {
   DropdownMenu,
@@ -9,6 +9,8 @@ import {
 import RegisterFace from "@/components/students/RegisterFace";
 import AssignStudent from "@/components/students/AssignStudent";
 import UnAssignStudent from "@/components/students/UnAssignStudent";
+import EditStudent from "@/components/students/EditStudent";
+import ViewStudent from "@/components/students/ViewStudent";
 
 interface DropdownMenuItemProps {
   student: IStudent;
@@ -34,15 +36,12 @@ function ActionsButton({
         </Button>
       </DropdownMenuTrigger>
       <DropdownMenuContent align="start">
-        <DropdownMenuItem dir="rtl">
-          <Eye className="mr-2 h-4 w-4" />
-          عرض
+        <DropdownMenuItem dir="rtl" onSelect={(e) => e.preventDefault()}>
+          <ViewStudent student={student} />
         </DropdownMenuItem>
-        <DropdownMenuItem dir="rtl">
-          <Edit className="mr-2 h-4 w-4" />
-          تعديل
+        <DropdownMenuItem dir="rtl" onSelect={(e) => e.preventDefault()}>
+          <EditStudent studentData={student} />
         </DropdownMenuItem>
-
         <DropdownMenuItem
           className="text-blue-600"
           onSelect={(e) => e.preventDefault()}

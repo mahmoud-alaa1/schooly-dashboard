@@ -4,6 +4,7 @@ import { PAGE_SIZE } from "@/lib/constants/pagination";
 import useGetAllClassrooms from "@/hooks/classrooms/useGetAllClassrooms";
 import ClassroomsTableRow from "./ClassroomsTableRow";
 import AddClassroom from "@/components/classrooms/AddClassroom";
+import { useMemo } from "react";
 
 const headers: string[] = ["المعلم", "المادة", "الصف", "عدد الطلاب"];
 
@@ -11,7 +12,10 @@ export default function ClassroomsTable() {
   const { data, isPending, error } = useGetAllClassrooms();
   const totalPages = data?.pages[0]?.meta?.totalPages ?? 1;
   const totalItems = data?.pages[0]?.meta?.totalItems ?? 1;
-  const classrooms = data?.pages.flatMap((page) => page.data) ?? [];
+  const classrooms = useMemo(
+    () => data?.pages.flatMap((page) => page.data) ?? [],
+    [data]
+  );
   const emptyRows = Math.max(0, PAGE_SIZE - classrooms.length);
   if (error) {
     return (

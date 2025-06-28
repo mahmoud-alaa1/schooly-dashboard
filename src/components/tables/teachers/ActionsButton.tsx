@@ -34,10 +34,6 @@ function ActionsButton({
       </DropdownMenuTrigger>
       <DropdownMenuContent align="start">
         <DropdownMenuItem dir="rtl">
-          <Eye className="mr-2 h-4 w-4" />
-          عرض
-        </DropdownMenuItem>
-        <DropdownMenuItem dir="rtl">
           <Edit className="mr-2 h-4 w-4" />
           تعديل
         </DropdownMenuItem>

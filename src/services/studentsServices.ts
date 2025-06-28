@@ -43,3 +43,37 @@ export async function getAllStudents({
     throw error;
   }
 }
+
+export async function editStudent(data: {
+  data: IStudentPostData;
+  id: string;
+}) {
+  try {
+    const response = await api.put<{ message: string }>(
+      `/student/${data.id}`,
+      data.data
+    );
+    return response.data;
+  } catch (error) {
+    if (isAxiosError(error)) {
+      console.error(error);
+      throw new Error(
+        error.response?.data?.message || "حدث خطأ في تعديل بيانات الطالب"
+      );
+    }
+    throw error;
+  }
+}
+
+export async function deleteStudent(id: string) {
+  try {
+    const response = await api.delete<{ message: string }>(`/student/${id}`);
+    return response.data;
+  } catch (error) {
+    if (isAxiosError(error)) {
+      console.error(error);
+      throw new Error(error.response?.data?.message || "حدث خطأ في حذف الطالب");
+    }
+    throw error;
+  }
+}
