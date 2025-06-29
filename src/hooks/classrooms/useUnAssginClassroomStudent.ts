@@ -8,13 +8,11 @@ export default function useUnAssginClassroomStudent() {
     mutationFn: async (data: { StudentId: string; ClassRoomId: string }) =>
       unAssginClassroomStudent(data),
     onSuccess: (data) => {
-      console.log(data);
       toast.success("تم حذف الفصل بنجاح");
       queryClient.invalidateQueries({ queryKey: ["classrooms"] });
     },
     onError: (error) => {
       toast.error(`${error.message}`);
-      console.error(error);
     },
   });
 }

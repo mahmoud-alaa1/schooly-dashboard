@@ -10,7 +10,6 @@ export default function usePostTeacher() {
   return useMutation({
     mutationFn: postTeacher,
     onSuccess: (data) => {
-      console.log(data);
       toast.success("تم تسجيل المعلم بنجاح");
       queryClient.invalidateQueries({
         queryKey: ["teachers", JSON.stringify(result)],
@@ -18,7 +17,6 @@ export default function usePostTeacher() {
     },
     onError: (error) => {
       toast.error(`${error.message}`);
-      console.error(error);
     },
   });
 }

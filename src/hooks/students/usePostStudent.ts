@@ -11,7 +11,6 @@ export default function usePostStudent() {
   return useMutation({
     mutationFn: postStudent,
     onSuccess: (data) => {
-      console.log(data);
       toast.success("تم تسجيل الطالب بنجاح");
       queryClient.invalidateQueries({
         queryKey: ["students", JSON.stringify(result)],
@@ -19,7 +18,6 @@ export default function usePostStudent() {
     },
     onError: (error) => {
       toast.error(`${error.message}`);
-      console.error(error);
     },
   });
 }

@@ -7,7 +7,6 @@ export async function postStudent(data: IStudentPostData) {
     return response.data;
   } catch (error) {
     if (isAxiosError(error)) {
-      console.error(error);
       throw new Error(
         error.response?.data?.message || "حدث خطأ في تسجيل الطالب"
       );
@@ -23,7 +22,6 @@ export async function getAllStudents({
   Page?: number | string;
   PageSize?: number | string;
 }) {
-  console.log(Page);
   try {
     const response = await api.get<IPaginatedResponse<IStudent>>(
       `/student/all`,
@@ -37,8 +35,33 @@ export async function getAllStudents({
     return response.data;
   } catch (error) {
     if (isAxiosError(error)) {
-      console.error(error);
       throw new Error(error.response?.data?.message || "حدث خطأ في جلب الطلاب");
+    }
+    throw error;
+  }
+}
+
+export async function editStudent(data: IStudentPutData) {
+  try {
+    const response = await api.put<{ message: string }>(`/student`, data);
+    return response.data;
+  } catch (error) {
+    if (isAxiosError(error)) {
+      throw new Error(
+        error.response?.data?.message || "حدث خطأ في تعديل بيانات الطالب"
+      );
+    }
+    throw error;
+  }
+}
+
+export async function deleteStudent(id: string) {
+  try {
+    const response = await api.delete<{ message: string }>(`/student/${id}`);
+    return response.data;
+  } catch (error) {
+    if (isAxiosError(error)) {
+      throw new Error(error.response?.data?.message || "حدث خطأ في حذف الطالب");
     }
     throw error;
   }
