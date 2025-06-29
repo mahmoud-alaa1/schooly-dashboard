@@ -33,28 +33,27 @@ export default function EditStudentForm({
       gender: initialData.gender || 0,
       grade: initialData.grade || 0,
       department: initialData.department || 0,
-      // parentRelation: initialData.parentRelation || 0,
-      // parentJob: initialData.parentJob || "",
-      // parentPhone2: initialData.parentPhone2 || "",
-      // address: initialData.address || "",
+      parentRelation: initialData.parentRelation || 0,
+      parentJob: initialData.parentJob || "",
+      parentPhone2: initialData.parentPhone2 || "",
+      address: initialData.address || "",
     },
   });
 
   function onSubmit(values: updateStudentSchema) {
-    console.log(values);
     const dateOfJoining = format(values.dateOfJoining!, "yyyy-MM-dd");
+    console.log(values);
     const data: IStudentPutData = {
       id: initialData.id,
       name: values.studentName!,
       email: values.studentEmail!,
       phoneNumber: values.phoneNumber!,
-      profilePictureUrl: initialData.profilePictureUrl || "",
       parent: {
         parentName: values.parentName!,
-        relation: values.parentRelation || 0,
-        job: values.parentJob || "",
+        relation: values.parentRelation!,
+        job: values.parentJob!,
         phone1: values.parentPhone1!,
-        phone2: values.parentPhone2 || "",
+        phone2: values.parentPhone2!,
       },
       address: values.address!,
       dateOfJoining,

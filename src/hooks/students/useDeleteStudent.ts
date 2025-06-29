@@ -14,7 +14,6 @@ export default function useDeleteStudent() {
     },
     onError: (error) => {
       toast.error(`${error.message}`);
-      console.error(error);
     },
   });
 }

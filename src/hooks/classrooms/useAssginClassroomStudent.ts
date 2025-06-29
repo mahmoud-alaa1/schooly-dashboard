@@ -8,13 +8,11 @@ export default function useAssginClassroomStudent() {
     mutationFn: async (data: { StudentId: string; ClassRoomId: string }) =>
       assginClassroomStudent(data),
     onSuccess: (data) => {
-      console.log(data);
       toast.success("تم تسجيل الفصل بنجاح");
       queryClient.invalidateQueries({ queryKey: ["classrooms"] });
     },
     onError: (error) => {
       toast.error(`${error.message}`);
-      console.error(error);
     },
   });
 }

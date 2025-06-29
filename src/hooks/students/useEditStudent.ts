@@ -8,14 +8,12 @@ export default function useEditStudent() {
   return useMutation({
     mutationFn: async (data: IStudentPutData) => editStudent(data),
     onSuccess: (data) => {
-      console.log(data);
       toast.success("تم تحديث بيانات الطالب بنجاح");
 
       queryClient.refetchQueries({ queryKey: ["students"], exact: false });
     },
     onError: (error) => {
       toast.error(`${error.message}`);
-      console.error(error);
     },
   });
 }

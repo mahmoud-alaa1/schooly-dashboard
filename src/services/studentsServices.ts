@@ -7,7 +7,6 @@ export async function postStudent(data: IStudentPostData) {
     return response.data;
   } catch (error) {
     if (isAxiosError(error)) {
-      console.error(error);
       throw new Error(
         error.response?.data?.message || "حدث خطأ في تسجيل الطالب"
       );
@@ -37,7 +36,6 @@ export async function getAllStudents({
     return response.data;
   } catch (error) {
     if (isAxiosError(error)) {
-      console.error(error);
       throw new Error(error.response?.data?.message || "حدث خطأ في جلب الطلاب");
     }
     throw error;
@@ -50,7 +48,6 @@ export async function editStudent(data: IStudentPutData) {
     return response.data;
   } catch (error) {
     if (isAxiosError(error)) {
-      console.error(error);
       throw new Error(
         error.response?.data?.message || "حدث خطأ في تعديل بيانات الطالب"
       );
@@ -65,7 +62,6 @@ export async function deleteStudent(id: string) {
     return response.data;
   } catch (error) {
     if (isAxiosError(error)) {
-      console.error(error);
       throw new Error(error.response?.data?.message || "حدث خطأ في حذف الطالب");
     }
     throw error;

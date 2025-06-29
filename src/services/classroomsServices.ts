@@ -22,9 +22,8 @@ export async function getAllClassrooms({
     return response.data;
   } catch (error) {
     if (isAxiosError(error)) {
-      console.error(error);
       throw new Error(
-        error.response?.data || "حدث خطأ ما في الحصول على الصفوف"
+        error.response?.data?.message || "حدث خطأ ما في الحصول على الصفوف"
       );
     }
     throw error;
@@ -39,9 +38,8 @@ export async function getSingleClassroom(id: string) {
     return response.data;
   } catch (error) {
     if (isAxiosError(error)) {
-      console.error(error);
       throw new Error(
-        error.response?.data || "حدث خطأ ما في الحصول على الصف المعين"
+        error.response?.data?.message || "حدث خطأ ما في الحصول على الصف المعين"
       );
     }
     throw error;
@@ -53,9 +51,9 @@ export async function getUserClassrooms() {
     return response.data;
   } catch (error) {
     if (isAxiosError(error)) {
-      console.error(error);
       throw new Error(
-        error.response?.data || "حدث خطأ ما في الحصول على فصولك الدراسية"
+        error.response?.data?.message ||
+          "حدث خطأ ما في الحصول على فصولك الدراسية"
       );
     }
     throw error;
@@ -68,8 +66,9 @@ export async function postClassroom(data: createClassroomSchema) {
     return response.data;
   } catch (error) {
     if (isAxiosError(error)) {
-      console.error(error);
-      throw new Error(error.response?.data || "حدث خطأ ما انشاء الفصل الدراسي");
+      throw new Error(
+        error.response?.data?.message || "حدث خطأ ما انشاء الفصل الدراسي"
+      );
     }
     throw error;
   }
@@ -87,7 +86,6 @@ export async function assginClassroomStudent(data: {
     return response.data;
   } catch (error) {
     if (isAxiosError(error)) {
-      console.error(error);
       throw new Error(
         error.response?.data?.message ||
           "حدث خطأ ما في تعيين الطالب للفصل الدراسي"
@@ -109,7 +107,6 @@ export async function unAssginClassroomStudent(data: {
     return response.data;
   } catch (error) {
     if (isAxiosError(error)) {
-      console.error(error);
       throw new Error(
         error.response?.data?.message ||
           "حدث خطأ ما في حذف الطالب من الفصل الدراسي"
@@ -132,7 +129,6 @@ export async function assginClassroomTeacher(data: {
     return response.data;
   } catch (error) {
     if (isAxiosError(error)) {
-      console.error(error);
       throw new Error(
         error.response?.data?.message ||
           "حدث خطأ ما في تعيين الطالب للفصل الدراسي"

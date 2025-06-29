@@ -5,7 +5,6 @@ import {
   DialogDescription,
   DialogHeader,
   DialogTitleWithCancel,
-  DialogTrigger,
 } from "@/components/ui/dialog";
 import {
   Award,
@@ -174,7 +173,7 @@ export default function ViewStudent({
                       <div className="flex space-x-3">
                         <p className="font-medium">{student.parentPhone1}</p>
                         <span>-</span>
-                        <p className="font-medium">{student.parentPhone1}</p>
+                        <p className="font-medium">{student.parentPhone2}</p>
                       </div>
                     </div>
                   </div>

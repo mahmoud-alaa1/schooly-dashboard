@@ -10,6 +10,8 @@ api.interceptors.request.use((config) => {
   if (token) {
     config.headers.Authorization = `Bearer ${token}`;
   }
+  config.headers["Accept-Language"] = "ar-EG";
+
   return config;
 });
 export default api;

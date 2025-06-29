@@ -25,18 +25,21 @@ declare interface IPostStudentResponse {
 declare interface IStudent {
   id: string;
   studentName: string;
-  department: number;
-  grade: number;
-  parentName: string;
-  parentPhone1: string;
-  dateOfJoining: string;
   email: string;
+  department: number;
   phoneNumber: string;
   dateOfBirth: string;
-  profilePictureUrl: null;
-  role: number;
-  department: number;
   gender: number;
+  grade: number;
+  role: number;
+  parentName: string;
+  parentPhone1: string;
+  parentPhone2: string;
+  dateOfJoining: string;
+  department: number;
+  parentJob: string;
+  address: string;
+  parentRelation: number;
 }
 
 declare interface IStudentPutData {
@@ -44,7 +47,7 @@ declare interface IStudentPutData {
   name: string;
   email: string;
   phoneNumber: string;
-  profilePictureUrl: string;
+  profilePictureUrl?: string;
   parent: {
     parentName: string;
     relation: number;

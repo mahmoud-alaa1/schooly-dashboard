@@ -4,7 +4,6 @@ import { Form } from "../ui/form";
 
 import FormInput from "../forms-fields/FormInput";
 import FormSelect from "../forms-fields/FormSelectWithOptions";
-import FormDatePicker from "../forms-fields/FormDatePicker";
 import { Button } from "../ui/button";
 import Spinner from "../ui/Spinner";
 import { updateTeacherSchema } from "@/schemas/teachersSchema";
@@ -25,7 +24,7 @@ export default function EditTeacherForm({
       email: initialData.email || "",
       phoneNumber: initialData.phoneNumber || "",
       dateOfBirth: new Date(initialData.dateOfBirth),
-      gender: initialData?.gender,
+      gender: initialData.gender,
     },
   });
 
@@ -35,8 +34,7 @@ export default function EditTeacherForm({
       name: values.name!,
       email: values.email!,
       phoneNumber: values.phoneNumber || "",
-      profilePictureUrl: initialData.photoUrl || "",
-      gender: values.gender,
+      gender: values.gender!,
     };
     mutate(data, {
       onSuccess: () => {
@@ -98,14 +96,6 @@ export default function EditTeacherForm({
                 value: 1,
               },
             ]}
-          />
-        </div>
-        <div className="grid  sm:grid-cols-2 gap-3 flex-wrap">
-          <FormDatePicker<updateTeacherSchema>
-            control={form.control}
-            name="dateOfBirth"
-            label="تاريخ الميلاد"
-            placeholder="تاريخ الميلاد"
           />
         </div>
 

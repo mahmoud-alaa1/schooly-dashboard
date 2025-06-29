@@ -11,7 +11,6 @@ export async function registerFaceService(data: FormData) {
     return response.data;
   } catch (error) {
     if (isAxiosError(error)) {
-      console.error(error);
       throw new Error(
         error.response?.data?.message || "حدث خطأ ما حاول مرة أخرى"
       );

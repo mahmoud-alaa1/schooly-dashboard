@@ -8,9 +8,8 @@ export async function postTeacher(data: ITeacherPostData) {
     return response.data;
   } catch (error) {
     if (isAxiosError(error)) {
-      console.error(error);
       throw new Error(
-        error.response?.data?.message || "حدث خطأ في تسجيل الطالب"
+        error.response?.data?.message || "حدث خطأ في تسجيل المعلم"
       );
     }
     throw error;
@@ -38,7 +37,6 @@ export async function getAllTeachers({
     return response.data;
   } catch (error) {
     if (isAxiosError(error)) {
-      console.error(error);
       throw new Error(
         error.response?.data?.message || "حدث خطأ في جلب المعلمين"
       );
@@ -53,7 +51,6 @@ export async function editTeacher(data: ITeacherPutData) {
     return response.data;
   } catch (error) {
     if (isAxiosError(error)) {
-      console.error(error);
       throw new Error(
         error.response?.data?.message || "حدث خطأ في تعديل بيانات المعلم"
       );
@@ -68,7 +65,6 @@ export async function deleteTeacher(id: string) {
     return response.data;
   } catch (error) {
     if (isAxiosError(error)) {
-      console.error(error);
       throw new Error(error.response?.data?.message || "حدث خطأ في حذف المعلم");
     }
     throw error;

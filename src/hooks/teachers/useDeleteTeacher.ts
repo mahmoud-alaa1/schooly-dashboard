@@ -14,7 +14,6 @@ export default function useDeleteTeacher() {
     },
     onError: (error) => {
       toast.error(`${error.message}`);
-      console.error(error);
     },
   });
 }

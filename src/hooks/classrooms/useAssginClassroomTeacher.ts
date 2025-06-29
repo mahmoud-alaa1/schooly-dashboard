@@ -8,13 +8,11 @@ export default function useAssginClassroomTeacher() {
     mutationFn: async (data: { TeacherId: string; ClassRoomId: string }) =>
       assginClassroomTeacher(data),
     onSuccess: (data) => {
-      console.log(data.message);
       toast.success("تم تسجيل الفصل بنجاح");
       queryClient.invalidateQueries({ queryKey: ["classrooms"] });
     },
     onError: (error) => {
       toast.error(`${error.message}`);
-      console.error(error);
     },
   });
 }
