@@ -13,3 +13,9 @@ interface ISingleClassroomResponse {
 interface IGetAllClassroomsResponse {
   data: IClassroom[];
 }
+
+interface IClassroomPutData {
+  id: string;
+  subject: string;
+  grade: string;
+}

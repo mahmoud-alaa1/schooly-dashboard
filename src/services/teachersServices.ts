@@ -23,7 +23,6 @@ export async function getAllTeachers({
   Page?: number | string;
   PageSize?: number | string;
 }) {
-  console.log(Page);
   try {
     const response = await api.get<IPaginatedResponse<ITeacher>>(
       `/teacher/all`,

@@ -42,7 +42,6 @@ export default function EditStudentForm({
 
   function onSubmit(values: updateStudentSchema) {
     const dateOfJoining = format(values.dateOfJoining!, "yyyy-MM-dd");
-    console.log(values);
     const data: IStudentPutData = {
       id: initialData.id,
       name: values.studentName!,

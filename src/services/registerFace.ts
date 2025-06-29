@@ -2,7 +2,6 @@ import api from "@/lib/axios";
 import { isAxiosError } from "axios";
 
 export async function registerFaceService(data: FormData) {
-  console.log("Registering face with data:", data);
   try {
     const response = await api.post<{ message: string }>(
       "/face-recognition/register-face",

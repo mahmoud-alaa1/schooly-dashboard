@@ -6,7 +6,7 @@ import ClassroomsTableRow from "./ClassroomsTableRow";
 import AddClassroom from "@/components/classrooms/AddClassroom";
 import { useMemo } from "react";
 
-const headers: string[] = ["المعلم", "المادة", "الصف", "عدد الطلاب"];
+const headers: string[] = ["المعلم", "المادة", "الصف", "عدد الطلاب", ""];
 
 export default function ClassroomsTable() {
   const { data, isPending, error } = useGetAllClassrooms();

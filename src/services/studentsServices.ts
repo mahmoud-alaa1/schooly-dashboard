@@ -22,7 +22,6 @@ export async function getAllStudents({
   Page?: number | string;
   PageSize?: number | string;
 }) {
-  console.log(Page);
   try {
     const response = await api.get<IPaginatedResponse<IStudent>>(
       `/student/all`,

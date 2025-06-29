@@ -1,5 +1,6 @@
 import { TableCell, TableRow } from "@/components/ui/table";
 import { memo } from "react";
+import ActionsButton from "./ActionsButton";
 
 export default memo(function ClassroomsTableRow({
   classroom,
@@ -23,6 +24,9 @@ export default memo(function ClassroomsTableRow({
         <span>{classroom.subject}</span>
       </TableCell>
       <TableCell>{classroom.numberOfStudents} طلاب</TableCell>
+      <TableCell>
+        <ActionsButton classroom={classroom} />
+      </TableCell>
     </TableRow>
   );
 });
