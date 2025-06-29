@@ -24,7 +24,6 @@ export default function AssignStudentForm({ id }: AssignFormProps) {
   });
 
   function onSubmit(values: AssignStudentClassroomSchema) {
-    console.log(values);
     mutate(values, {
       onSuccess: () => {
         form.reset();
@@ -54,7 +53,7 @@ export default function AssignStudentForm({ id }: AssignFormProps) {
           control={form.control}
           name="ClassRoomId"
           queryKey={["classrooms"]}
-          getOptionLabel={(item) => item.grade}
+          getOptionLabel={(item) => `${item.grade} - ${item.subject}`}
           getOptionValue={(item) => item.id}
           fetchFn={(pageNumber) =>
             getAllClassrooms({

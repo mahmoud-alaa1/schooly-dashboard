@@ -20,24 +20,24 @@ import {
 
 interface IViewStudentProps {
   student: IStudent;
+  isOpen: boolean;
+  setIsOpen: (isOpen: boolean) => void;
 }
 
-export default function ViewStudent({ student }: IViewStudentProps) {
+export default function ViewStudent({
+  student,
+  isOpen,
+  setIsOpen,
+}: IViewStudentProps) {
   return (
-    <Dialog>
-      <DialogTrigger asChild>
-        <div className="flex items-center w-full cursor-pointer gap-2">
-          <Eye className="mr-2 h-4 w-4" />
-          <span>عرض</span>
-        </div>
-      </DialogTrigger>
+    <Dialog open={isOpen} onOpenChange={setIsOpen}>
       <DialogContent className="w-[clamp(300px,80vw,1000px)]">
         <DialogHeader>
           <DialogTitleWithCancel title=" بيانات الطالب" icon={<Eye />} />
         </DialogHeader>
 
         <div className="bg-white overflow-hidden ">
-          <div className="bg-gradient-to-r from-indigo-600 to-purple-600 px-8 py-6 text-white">
+          <div className="bg-gradient-to-r bg-primary   px-8 py-6 text-white">
             <div className="flex items-center  gap-4 ">
               <div className="w-24 h-24 bg-white/20 rounded-full flex items-center justify-center backdrop-blur-sm">
                 <User className="w-12 h-12 text-white" />

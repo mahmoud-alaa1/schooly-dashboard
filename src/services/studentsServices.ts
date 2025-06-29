@@ -44,15 +44,9 @@ export async function getAllStudents({
   }
 }
 
-export async function editStudent(data: {
-  data: IStudentPostData;
-  id: string;
-}) {
+export async function editStudent(data: IStudentPutData) {
   try {
-    const response = await api.put<{ message: string }>(
-      `/student/${data.id}`,
-      data.data
-    );
+    const response = await api.put<{ message: string }>(`/student`, data);
     return response.data;
   } catch (error) {
     if (isAxiosError(error)) {

@@ -24,7 +24,6 @@ export default function UnAssignStudentForm({ id }: AssignFormProps) {
   });
 
   function onSubmit(values: AssignStudentClassroomSchema) {
-    console.log(values);
     mutate(values, {
       onSuccess: () => {
         form.reset();
@@ -46,7 +45,7 @@ export default function UnAssignStudentForm({ id }: AssignFormProps) {
         {/* معلومات الطالب */}
         <div className="flex items-center gap-4 mb-4">
           <p className="text-muted-foreground whitespace-nowrap">
-            تعيين فصل دراسي
+            حذف فصل دراسي
           </p>
           <div className="h-px bg-border flex-1" />
         </div>
@@ -54,7 +53,7 @@ export default function UnAssignStudentForm({ id }: AssignFormProps) {
           control={form.control}
           name="ClassRoomId"
           queryKey={["classrooms"]}
-          getOptionLabel={(item) => item.grade}
+          getOptionLabel={(item) => `${item.grade} - ${item.subject}`}
           getOptionValue={(item) => item.id}
           fetchFn={(pageNumber) =>
             getAllClassrooms({

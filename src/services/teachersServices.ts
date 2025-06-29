@@ -47,9 +47,9 @@ export async function getAllTeachers({
   }
 }
 
-export async function editTeacher(id: string, data: ITeacherPostData) {
+export async function editTeacher(data: ITeacherPutData) {
   try {
-    const response = await api.put<{ message: string }>(`/teacher/${id}`, data);
+    const response = await api.put<{ message: string }>(`/teacher`, data);
     return response.data;
   } catch (error) {
     if (isAxiosError(error)) {

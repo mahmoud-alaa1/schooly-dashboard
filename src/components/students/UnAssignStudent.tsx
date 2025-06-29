@@ -4,24 +4,23 @@ import {
   DialogDescription,
   DialogHeader,
   DialogTitleWithCancel,
-  DialogTrigger,
 } from "@/components/ui/dialog";
-import { Plus, Trash2 } from "lucide-react";
+import { Plus } from "lucide-react";
 import UnAssignStudentForm from "../forms/UnAssignStudentForm";
 
 interface IAssignProps {
   id: string;
+  isOpen: boolean;
+  setIsOpen: (isOpen: boolean) => void;
 }
 
-export default function UnAssignStudent({ id }: IAssignProps) {
+export default function UnAssignStudent({
+  id,
+  isOpen,
+  setIsOpen,
+}: IAssignProps) {
   return (
-    <Dialog>
-      <DialogTrigger asChild>
-        <div className="flex items-center w-full cursor-pointer gap-2">
-          <Trash2 className="mr-2 h-4 w-4" />
-          <span>حذف فصل دراسي</span>
-        </div>
-      </DialogTrigger>
+    <Dialog open={isOpen} onOpenChange={setIsOpen}>
       <DialogContent className="w-[clamp(300px,80vw,1000px)]">
         <DialogHeader>
           <DialogTitleWithCancel title="حذف فصل دراسي" icon={<Plus />} />

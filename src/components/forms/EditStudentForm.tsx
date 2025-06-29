@@ -1,16 +1,15 @@
 import { useForm } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
-import { registerStudentSchema } from "@/schemas/studentSchema";
+import { updateStudentSchema } from "@/schemas/studentSchema";
 import { Form } from "../ui/form";
 
 import FormInput from "../forms-fields/FormInput";
 import FormSelect from "../forms-fields/FormSelectWithOptions";
 import FormDatePicker from "../forms-fields/FormDatePicker";
 import { Button } from "../ui/button";
-import FormPassword from "../forms-fields/FormPassword";
-import usePostStudent from "@/hooks/students/usePostStudent";
 import Spinner from "../ui/Spinner";
 import { format } from "date-fns";
+import useEditStudent from "@/hooks/students/useEditStudent";
 
 interface IEditStudentFormProps {
   initialData: IStudent;
@@ -19,10 +18,10 @@ interface IEditStudentFormProps {
 export default function EditStudentForm({
   initialData,
 }: IEditStudentFormProps) {
-  const { isPending, mutate } = usePostStudent();
+  const { isPending, mutate } = useEditStudent();
 
-  const form = useForm<registerStudentSchema>({
-    resolver: zodResolver(registerStudentSchema),
+  const form = useForm<updateStudentSchema>({
+    resolver: zodResolver(updateStudentSchema),
     defaultValues: {
       studentName: initialData.studentName || "",
       studentEmail: initialData.email || "",
@@ -34,21 +33,40 @@ export default function EditStudentForm({
       gender: initialData.gender || 0,
       grade: initialData.grade || 0,
       department: initialData.department || 0,
+      // parentRelation: initialData.parentRelation || 0,
+      // parentJob: initialData.parentJob || "",
+      // parentPhone2: initialData.parentPhone2 || "",
+      // address: initialData.address || "",
     },
   });
 
-  function onSubmit(values: registerStudentSchema) {
+  function onSubmit(values: updateStudentSchema) {
     console.log(values);
-    const dateOfBirth = format(values.dateOfBirth, "yyyy-MM-dd");
-    const dateOfJoining = format(values.dateOfJoining, "yyyy-MM-dd");
-    mutate(
-      { ...values, dateOfBirth, dateOfJoining },
-      {
-        onSuccess: () => {
-          form.reset();
-        },
-      }
-    );
+    const dateOfJoining = format(values.dateOfJoining!, "yyyy-MM-dd");
+    const data: IStudentPutData = {
+      id: initialData.id,
+      name: values.studentName!,
+      email: values.studentEmail!,
+      phoneNumber: values.phoneNumber!,
+      profilePictureUrl: initialData.profilePictureUrl || "",
+      parent: {
+        parentName: values.parentName!,
+        relation: values.parentRelation || 0,
+        job: values.parentJob || "",
+        phone1: values.parentPhone1!,
+        phone2: values.parentPhone2 || "",
+      },
+      address: values.address!,
+      dateOfJoining,
+      department: values.department!,
+      grade: values.grade!,
+      gender: values.gender!,
+    };
+    mutate(data, {
+      onSuccess: () => {
+        form.reset();
+      },
+    });
   }
   return (
     <Form {...form}>
@@ -69,28 +87,23 @@ export default function EditStudentForm({
           </p>
           <div className="h-px bg-border flex-1" />
         </div>
-        <FormInput<registerStudentSchema>
-          control={form.control}
-          name="studentName"
-          label="اسم الطالب المستجد"
-          placeholder="اسم الطالب رباعي"
-        />
+
         <div className="sm:grid-cols-2 grid gap-3 ">
-          <FormInput<registerStudentSchema>
+          <FormInput<updateStudentSchema>
+            control={form.control}
+            name="studentName"
+            label="اسم الطالب المستجد"
+            placeholder="اسم الطالب رباعي"
+          />
+          <FormInput<updateStudentSchema>
             control={form.control}
             name="studentEmail"
             label="بريد الطالب المستجد"
             placeholder="example@example.com"
           />
-          <FormPassword<registerStudentSchema>
-            control={form.control}
-            name="password"
-            label="كلمة المرور"
-            placeholder="كلمة المرور"
-          />
         </div>
         <div className="grid  sm:grid-cols-2 gap-3 flex-wrap">
-          <FormSelect<registerStudentSchema>
+          <FormSelect<updateStudentSchema>
             control={form.control}
             name="gender"
             placeholder="اختر النوع"
@@ -106,14 +119,15 @@ export default function EditStudentForm({
               },
             ]}
           />
-          <FormDatePicker<registerStudentSchema>
+          <FormDatePicker<updateStudentSchema>
             control={form.control}
             name="dateOfBirth"
             label="تاريخ الميلاد"
             placeholder="تاريخ الميلاد"
+            disabled={true}
           />
         </div>
-        <FormInput<registerStudentSchema>
+        <FormInput<updateStudentSchema>
           control={form.control}
           name="address"
           label="عنوان السكن"
@@ -125,14 +139,14 @@ export default function EditStudentForm({
           <p className="text-muted-foreground whitespace-nowrap">ولى الامر</p>
           <div className="h-px bg-border flex-1" />
         </div>
-        <FormInput<registerStudentSchema>
+        <FormInput<updateStudentSchema>
           control={form.control}
           name="parentName"
           label="اسم ولي الامر"
           placeholder="اسم ولى الامر رباعي"
         />
         <div className="grid  sm:grid-cols-2 gap-3 flex-wrap">
-          <FormSelect<registerStudentSchema>
+          <FormSelect<updateStudentSchema>
             control={form.control}
             name="parentRelation"
             placeholder="مثال: الوالد"
@@ -148,7 +162,7 @@ export default function EditStudentForm({
               },
             ]}
           />
-          <FormInput<registerStudentSchema>
+          <FormInput<updateStudentSchema>
             control={form.control}
             name="parentJob"
             label="مهنة ولى الأمر"
@@ -156,19 +170,19 @@ export default function EditStudentForm({
           />
         </div>
         <div className="grid  sm:grid-cols-2 gap-3 flex-wrap">
-          <FormInput<registerStudentSchema>
+          <FormInput<updateStudentSchema>
             control={form.control}
             name="parentPhone1"
             label="رقم ولى الأمر الأول"
             placeholder="رقم الموبايل الأساسي"
           />
-          <FormInput<registerStudentSchema>
+          <FormInput<updateStudentSchema>
             control={form.control}
             name="parentPhone2"
             label="رقم ولى الأمر الثاني"
             placeholder="رقم الموبايل الثانوي"
           />
-          <FormInput<registerStudentSchema>
+          <FormInput<updateStudentSchema>
             control={form.control}
             name="phoneNumber"
             label="رقم الهاتف"
@@ -183,7 +197,7 @@ export default function EditStudentForm({
         </div>
         <div className="flex gap-3 flex-wrap">
           <div className="flex-1 min-w-[200px]">
-            <FormDatePicker<registerStudentSchema>
+            <FormDatePicker<updateStudentSchema>
               control={form.control}
               name="dateOfJoining"
               label="تاريخ الإلتحاق بالمدرسة"
@@ -191,9 +205,9 @@ export default function EditStudentForm({
             />
           </div>
           <div className="flex-1 min-w-[200px]">
-            <FormSelect<registerStudentSchema>
+            <FormSelect<updateStudentSchema>
               control={form.control}
-              name="gender"
+              name="department"
               placeholder="مثال: امريكي"
               label="قسم المدرسة"
               options={[
@@ -203,9 +217,9 @@ export default function EditStudentForm({
             />
           </div>
           <div className="flex-1 min-w-[200px]">
-            <FormSelect<registerStudentSchema>
+            <FormSelect<updateStudentSchema>
               control={form.control}
-              name="gender"
+              name="grade"
               placeholder="مثال: Grade 10"
               label="الصف الدراسي"
               options={[

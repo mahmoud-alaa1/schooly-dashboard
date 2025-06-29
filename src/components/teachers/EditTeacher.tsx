@@ -6,33 +6,33 @@ import {
   DialogTitleWithCancel,
 } from "@/components/ui/dialog";
 import { Edit } from "lucide-react";
-import EditStudentForm from "../forms/EditStudentForm";
+import EditTeacherForm from "../forms/EditTeacherForm";
 
-interface IEditStudentFormProps {
-  studentData: IStudent;
+interface IEditTeacherFormProps {
+  teacherData: ITeacher;
   isOpen: boolean;
   setIsOpen: (isOpen: boolean) => void;
 }
 
-export default function EditStudent({
-  studentData,
+export default function EditTeacher({
+  teacherData,
   isOpen,
   setIsOpen,
-}: IEditStudentFormProps) {
+}: IEditTeacherFormProps) {
   return (
     <Dialog open={isOpen} onOpenChange={setIsOpen}>
       <DialogContent className="w-[clamp(300px,80vw,1000px)]">
         <DialogHeader>
-          <DialogTitleWithCancel title=" بيانات الطالب" icon={<Edit />} />
+          <DialogTitleWithCancel title=" بيانات المعلم" icon={<Edit />} />
         </DialogHeader>
         <div className="p-5 pt-3">
-          <EditStudentForm initialData={studentData} />
+          <EditTeacherForm initialData={teacherData} />
         </div>
 
         <DialogDescription className="sr-only">
-          يمكنك عرض بيانات الطالب وتحديثها حسب الحاجة. تأكد من إدخال المعلومات
+          يمكنك عرض بيانات المعلم وتحديثها حسب الحاجة. تأكد من إدخال المعلومات
           الصحيحة.
-          <span className="sr-only">عرض بيانات الطالب</span>
+          <span className="sr-only">عرض بيانات المعلم</span>
         </DialogDescription>
       </DialogContent>
     </Dialog>

@@ -38,3 +38,23 @@ declare interface IStudent {
   department: number;
   gender: number;
 }
+
+declare interface IStudentPutData {
+  id: string;
+  name: string;
+  email: string;
+  phoneNumber: string;
+  profilePictureUrl: string;
+  parent: {
+    parentName: string;
+    relation: number;
+    job: string;
+    phone1: string;
+    phone2: string;
+  };
+  address: string;
+  dateOfJoining: string;
+  department: number;
+  grade: number;
+  gender: number;
+}

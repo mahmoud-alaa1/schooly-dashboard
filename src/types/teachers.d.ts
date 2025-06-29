@@ -3,6 +3,7 @@ declare interface ITeacher {
   name: string;
   email: string;
   phoneNumber: string | null;
+  photoUrl: string | null;
 }
 
 declare interface ITeacherPostData {
@@ -11,4 +12,13 @@ declare interface ITeacherPostData {
   email: string;
   gender: number;
   password: string;
+}
+
+declare interface ITeacherPutData {
+  id: string;
+  name: string;
+  email: string;
+  phoneNumber: string;
+  profilePictureUrl: string;
+  gender: number;
 }

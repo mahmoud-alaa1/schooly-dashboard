@@ -15,21 +15,21 @@ import Spinner from "../ui/Spinner";
 import { format } from "date-fns";
 
 const defaultValues: registerStudentSchema = {
-  address: "سوهاج",
-  dateOfBirth: new Date("2002-02-19"),
+  address: "",
+  dateOfBirth: new Date(),
   dateOfJoining: new Date(),
   department: 0,
   gender: 0,
-  parentJob: "مهندس برمجيات",
-  parentName: " محمود علاء ابراهيم",
+  parentJob: "",
+  parentName: "",
   grade: 0,
-  parentPhone1: "01000000000",
-  parentPhone2: "01000000001",
-  phoneNumber: "01000000000",
+  parentPhone1: "",
+  parentPhone2: "",
+  phoneNumber: "",
   parentRelation: 0,
   password: "",
   studentEmail: "",
-  studentName: "محمود علاء ابراهيم",
+  studentName: "",
 };
 
 export default function AddStudentForm() {
@@ -49,7 +49,6 @@ export default function AddStudentForm() {
   }, [form, setFormData]);
 
   function onSubmit(values: registerStudentSchema) {
-    console.log(values);
     const dateOfBirth = format(values.dateOfBirth, "yyyy-MM-dd");
     const dateOfJoining = format(values.dateOfJoining, "yyyy-MM-dd");
     mutate(
@@ -206,7 +205,7 @@ export default function AddStudentForm() {
           <div className="flex-1 min-w-[200px]">
             <FormSelect<registerStudentSchema>
               control={form.control}
-              name="gender"
+              name="department"
               placeholder="مثال: امريكي"
               label="قسم المدرسة"
               options={[
@@ -218,7 +217,7 @@ export default function AddStudentForm() {
           <div className="flex-1 min-w-[200px]">
             <FormSelect<registerStudentSchema>
               control={form.control}
-              name="gender"
+              name="grade"
               placeholder="مثال: Grade 10"
               label="الصف الدراسي"
               options={[

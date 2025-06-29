@@ -1,57 +1,48 @@
 import { useForm } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { Form } from "../ui/form";
-import { useEffect } from "react";
 
 import FormInput from "../forms-fields/FormInput";
 import FormSelect from "../forms-fields/FormSelectWithOptions";
 import FormDatePicker from "../forms-fields/FormDatePicker";
 import { Button } from "../ui/button";
-import FormPassword from "../forms-fields/FormPassword";
 import Spinner from "../ui/Spinner";
-import { format } from "date-fns";
-import { registerTeacherSchema } from "@/schemas/teachersSchema";
-import { createFormStore } from "@/store/formsStore";
-import usePostTeacher from "@/hooks/teachers/usePostTeacher";
+import { updateTeacherSchema } from "@/schemas/teachersSchema";
+import useEditTeacher from "@/hooks/teachers/useEditTeacher";
 
-const defaultValues: registerTeacherSchema = {
-  dateOfBirth: new Date(),
-  gender: 0,
-  password: "",
-  email: "",
-  name: "",
-  phoneNumber: "",
-};
+interface IEditTeacherFormProps {
+  initialData: ITeacher;
+}
+export default function EditTeacherForm({
+  initialData,
+}: IEditTeacherFormProps) {
+  const { isPending, mutate } = useEditTeacher();
 
-export default function AddTeacherForm() {
-  const useTeacherForm = createFormStore<registerTeacherSchema>("teacher-form");
-  const { clearFormData, formData, setFormData } = useTeacherForm;
-
-  const { isPending, mutate } = usePostTeacher();
-
-  const form = useForm<registerTeacherSchema>({
-    resolver: zodResolver(registerTeacherSchema),
-    defaultValues: formData || defaultValues,
+  const form = useForm<updateTeacherSchema>({
+    resolver: zodResolver(updateTeacherSchema),
+    defaultValues: {
+      name: initialData.name || "",
+      email: initialData.email || "",
+      phoneNumber: initialData.phoneNumber || "",
+      dateOfBirth: new Date(initialData.dateOfBirth),
+      gender: initialData?.gender,
+    },
   });
 
-  useEffect(() => {
-    const subscription = form.watch((data) => {
-      setFormData(data as registerTeacherSchema);
+  function onSubmit(values: updateTeacherSchema) {
+    const data: ITeacherPutData = {
+      id: initialData.id,
+      name: values.name!,
+      email: values.email!,
+      phoneNumber: values.phoneNumber || "",
+      profilePictureUrl: initialData.photoUrl || "",
+      gender: values.gender,
+    };
+    mutate(data, {
+      onSuccess: () => {
+        form.reset();
+      },
     });
-    return () => subscription.unsubscribe();
-  }, [form, setFormData]);
-
-  function onSubmit(values: registerTeacherSchema) {
-    const dateOfBirth = format(values.dateOfBirth, "yyyy-MM-dd");
-    mutate(
-      { ...values, dateOfBirth },
-      {
-        onSuccess: () => {
-          clearFormData();
-          form.reset();
-        },
-      }
-    );
   }
   return (
     <Form {...form}>
@@ -71,13 +62,13 @@ export default function AddTeacherForm() {
           <div className="h-px bg-border flex-1" />
         </div>
         <div className="sm:grid-cols-2 grid gap-3 ">
-          <FormInput<registerTeacherSchema>
+          <FormInput<updateTeacherSchema>
             control={form.control}
             name="name"
             label="اسم المعلم"
             placeholder="اسم المعلم رباعي"
           />
-          <FormInput<registerTeacherSchema>
+          <FormInput<updateTeacherSchema>
             control={form.control}
             name="email"
             label="بريد المعلم الإلكتروني"
@@ -86,21 +77,13 @@ export default function AddTeacherForm() {
           />
         </div>
         <div className="sm:grid-cols-2 grid gap-3 ">
-          <FormInput<registerTeacherSchema>
+          <FormInput<updateTeacherSchema>
             control={form.control}
             name="phoneNumber"
             label="رقم الهاتف"
             placeholder="01234567890"
           />
-          <FormPassword<registerTeacherSchema>
-            control={form.control}
-            name="password"
-            label="كلمة المرور"
-            placeholder="كلمة المرور"
-          />
-        </div>
-        <div className="grid  sm:grid-cols-2 gap-3 flex-wrap">
-          <FormSelect<registerTeacherSchema>
+          <FormSelect<updateTeacherSchema>
             control={form.control}
             name="gender"
             placeholder="اختر النوع"
@@ -116,7 +99,9 @@ export default function AddTeacherForm() {
               },
             ]}
           />
-          <FormDatePicker<registerTeacherSchema>
+        </div>
+        <div className="grid  sm:grid-cols-2 gap-3 flex-wrap">
+          <FormDatePicker<updateTeacherSchema>
             control={form.control}
             name="dateOfBirth"
             label="تاريخ الميلاد"
@@ -130,7 +115,7 @@ export default function AddTeacherForm() {
             type="submit"
             className="w-full  text-white py-3 rounded-md  "
           >
-            {isPending ? <Spinner /> : "إضافة معلم جديد"}
+            {isPending ? <Spinner /> : "تحديث بيانات المعلم"}
           </Button>
         </div>
       </form>
