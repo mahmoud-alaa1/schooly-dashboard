@@ -18,6 +18,15 @@ export enum EGender {
 }
 export enum EDepartment {
   AMERICAN = 0,
+  BRITISH = 1,
+}
+
+export enum EGrade {
+  "ألاول" = 0,
+  "الثاني" = 1,
+  "الثالث" = 2,
+  "الرابع" = 3,
+  "الخامس" = 4,
 }
 
 export enum EVerificationState {

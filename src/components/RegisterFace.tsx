@@ -6,28 +6,32 @@ import {
   DialogTitleWithCancel,
 } from "@/components/ui/dialog";
 import { Plus } from "lucide-react";
-import AssignTeacherForm from "../forms/AssignTeacherForm";
+import RegisterFaceForm from "./forms/RegisterFaceForm";
 
-interface IAssignProps {
+interface RegisterFaceProps {
   id: string;
   isOpen: boolean;
   setIsOpen: (isOpen: boolean) => void;
 }
 
-export default function AssignTeacher({ id, isOpen, setIsOpen }: IAssignProps) {
+export default function RegisterFace({
+  id,
+  isOpen,
+  setIsOpen,
+}: RegisterFaceProps) {
   return (
     <Dialog open={isOpen} onOpenChange={setIsOpen}>
       <DialogContent className="w-[clamp(300px,80vw,1000px)]">
         <DialogHeader>
-          <DialogTitleWithCancel title="تسجيل فصل دراسي" icon={<Plus />} />
+          <DialogTitleWithCancel title="تسجيل وجه" icon={<Plus />} />
         </DialogHeader>
         <div className="p-5 pt-3">
-          <AssignTeacherForm id={id} />
+          <RegisterFaceForm id={id} />
         </div>
 
         <DialogDescription className="sr-only">
-          تسجيل فصل دراسي للمعلم لتمكينه من الوصول إلى المحتوى التعليمي.
-          <span className="sr-only">تعيين فصل دراسي للمعلم</span>
+          يمكنك تسجيل وجه الطالب او المعلم لتمكين التعرف على الوجه في المستقبل.
+          <span className="sr-only"> تسجيل وجه الطالب او المعلم</span>
         </DialogDescription>
       </DialogContent>
     </Dialog>

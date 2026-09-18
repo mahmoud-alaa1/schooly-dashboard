@@ -4,6 +4,7 @@ import StudentsTableRow from "./StudentsTableRow";
 import { UserRoundPlus } from "lucide-react";
 import AddStudent from "../../students/AddStudent";
 import { PAGE_SIZE } from "@/lib/constants/pagination";
+import { useMemo } from "react";
 
 const headers: string[] = [
   "اسم الطالب",
@@ -15,7 +16,10 @@ const headers: string[] = [
 
 export default function StudentsTable() {
   const { data, isPending, error } = useGetAllStudents();
-  const students = data?.pages.flatMap((page) => page.data) ?? [];
+  const students = useMemo(
+    () => data?.pages.flatMap((page) => page.data) ?? [],
+    [data]
+  );
   const totalPages = data?.pages[0]?.meta?.totalPages ?? 1;
   const totalItems = data?.pages[0]?.meta?.totalItems ?? 1;
   const emptyRows = Math.max(0, PAGE_SIZE - students.length);

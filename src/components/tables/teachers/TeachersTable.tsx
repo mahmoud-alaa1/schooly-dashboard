@@ -4,12 +4,16 @@ import { PAGE_SIZE } from "@/lib/constants/pagination";
 import useGetAllTeachers from "@/hooks/teachers/useGetAllTeachers";
 import TeacherTableRow from "./TeacherTableRow";
 import AddTeacher from "@/components/teachers/AddTeacher";
+import { useMemo } from "react";
 
 const headers: string[] = ["اسم المعلم", "الايميل", "رقم الهاتف", ""];
 
 export default function TeachersTable() {
   const { data, isPending, error } = useGetAllTeachers();
-  const teachers = data?.pages.flatMap((page) => page.data) ?? [];
+  const teachers = useMemo(
+    () => data?.pages.flatMap((page) => page.data) ?? [],
+    [data]
+  );
   const totalPages = data?.pages[0]?.meta?.totalPages ?? 1;
   const totalItems = data?.pages[0]?.meta?.totalItems ?? 1;
   const emptyRows = Math.max(0, PAGE_SIZE - teachers.length);

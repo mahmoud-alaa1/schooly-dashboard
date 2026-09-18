@@ -6,12 +6,10 @@ export default function useRegisterFace() {
   return useMutation({
     mutationFn: async (data: FormData) => registerFaceService(data),
     onSuccess: (data) => {
-      console.log(data);
       toast.success("تم تسجيل الوجه بنجاح");
     },
     onError: (error) => {
       toast.error(`${error.message}`);
-      console.error(error);
     },
   });
 }

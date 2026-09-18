@@ -1,5 +1,4 @@
 import { getAllClassrooms } from "@/services/classroomsServices";
-import { useQuery } from "@tanstack/react-query";
 import useTableQueries from "../useTableQueries";
 import useInfinite from "../useInfinite";
 
@@ -8,7 +7,6 @@ export default function useGetAllClassrooms() {
   const currentPage = parseInt(result.Page || "1");
   const nextPage = currentPage + 1;
   const prevPage = currentPage - 1;
-  console.log("useGetAllClassrooms result:", result);
 
   const res = useInfinite<IClassroom>({
     queryKey: ["classrooms", JSON.stringify(result)],

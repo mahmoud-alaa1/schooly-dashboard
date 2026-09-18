@@ -12,8 +12,9 @@ export async function loginsService(data: {
     return response.data;
   } catch (error) {
     if (isAxiosError(error)) {
-      console.error(error);
-      throw new Error(error.response?.data || "حدث خطأ ما حاول مرة أخرى");
+      throw new Error(
+        error.response?.data?.message || "حدث خطأ ما حاول مرة أخرى"
+      );
     }
     throw error;
   }

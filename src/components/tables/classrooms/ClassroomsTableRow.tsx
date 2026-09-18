@@ -1,6 +1,8 @@
 import { TableCell, TableRow } from "@/components/ui/table";
+import { memo } from "react";
+import ActionsButton from "./ActionsButton";
 
-export default function ClassroomsTableRow({
+export default memo(function ClassroomsTableRow({
   classroom,
 }: {
   classroom: IClassroom;
@@ -22,6 +24,9 @@ export default function ClassroomsTableRow({
         <span>{classroom.grade}</span>
       </TableCell>
       <TableCell>{classroom.numberOfStudents} طلاب</TableCell>
+      <TableCell>
+        <ActionsButton classroom={classroom} />
+      </TableCell>
     </TableRow>
   );
-}
+});

@@ -11,6 +11,8 @@ export const createClassroomSchema = z.object({
     .trim(),
 });
 
+export const updateClassroomSchema = createClassroomSchema.partial();
+
 export const AssignStudentClassroomSchema = z.object({
   StudentId: z
     .string({
@@ -34,6 +36,7 @@ export const AssignTeacherClassroomSchema = z.object({
 });
 
 export type createClassroomSchema = z.infer<typeof createClassroomSchema>;
+export type updateClassroomSchema = z.infer<typeof updateClassroomSchema>;
 export type AssignStudentClassroomSchema = z.infer<
   typeof AssignStudentClassroomSchema
 >;

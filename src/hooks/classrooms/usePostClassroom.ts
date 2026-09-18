@@ -10,7 +10,6 @@ export default function usePostClassroom() {
   return useMutation({
     mutationFn: postClassroom,
     onSuccess: (data) => {
-      console.log(data);
       toast.success("تم تسجيل الفصل بنجاح");
       queryClient.invalidateQueries({
         queryKey: ["classrooms", JSON.stringify(result)],
@@ -18,7 +17,6 @@ export default function usePostClassroom() {
     },
     onError: (error) => {
       toast.error(`${error.message}`);
-      console.error(error);
     },
   });
 }

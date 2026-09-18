@@ -1,7 +1,12 @@
 import { TableCell, TableRow } from "@/components/ui/table";
 import ActionsButton from "./ActionsButton";
+import { memo } from "react";
 
-export default function TeacherTableRow({ teacher }: { teacher: ITeacher }) {
+export default memo(function TeacherTableRow({
+  teacher,
+}: {
+  teacher: ITeacher;
+}) {
   return (
     <TableRow>
       <TableCell>
@@ -21,4 +26,4 @@ export default function TeacherTableRow({ teacher }: { teacher: ITeacher }) {
       </TableCell>
     </TableRow>
   );
-}
+});
